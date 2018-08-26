@@ -50,9 +50,9 @@ char generateChar( int shift, char originalChar  )
 /**
  * @brief      Encodes the input text file and saves in other file.
  *
- * @param      inputFile  The pointer to the input text file
- * @param      key        The key used to encode the original text
- * @param      alphabet   The complete alphabet used to cipher (defined by default)
+ * @param      inputFile  		The pointer to the input text file
+ * @param      key        		The key used to encode the original text
+ * @param      outputFileName   The string representing the name of output encoded file
  *
  * @return     0 if the cipher is successfull, 1 in otherwise.
  */

@@ -23,10 +23,10 @@ void generateShiftArray( char * key, int * shiftArray )
 }
 
 /**
- * @brief      Cipher a character
+ * @brief      Uncipher a character
  *
- * @param[in]  shift         The shift to minus on ciphered character
- * @param[in]  codedChar  The original character to be unciphered.
+ * @param[in]  shift        The shift to minus on ciphered character
+ * @param[in]  codedChar  	The original character to be unciphered.
  *
  * @return     Returns the unciphered character
  */
@@ -54,7 +54,7 @@ char generateChar( int shift, char codedChar  )
  *
  * @param      inputFile  		The pointer to the input text file
  * @param      key        		The key used to encode the original text
- * @param      outputFilename   The string representing the name of output file
+ * @param      outputFilename   The string representing the name of output decoded file
  *
  * @return     0 if the uncipher is successfull, 1 in otherwise.
  */
