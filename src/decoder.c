@@ -32,12 +32,13 @@ void generateShiftArray( char * key, int * shiftArray )
  */
 char generateChar( int shift, char codedChar  )
 {
+
 	if( codedChar < ALPHABET_INIT  || codedChar > ALPHABET_END )
 	{
 		return codedChar;
 	}
 
-	char newChar = codedChar - shift;
+	int newChar = codedChar - shift;
 
 	if( newChar < ALPHABET_INIT ) 
 	{
@@ -60,7 +61,6 @@ char generateChar( int shift, char codedChar  )
 int decode( FILE * inputFile, char * key, char * outputFileName )
 {
 	int letterIndex = 0;
-	int alphabetSize = ALPHABET_END - ALPHABET_INIT + 1;
 	printf( "Ciphering the file to %s file\n", outputFileName );
 
 	int * shiftArray = malloc( strlen(key) * sizeof(int) );
@@ -81,7 +81,7 @@ int decode( FILE * inputFile, char * key, char * outputFileName )
 		int i;
 		for( i = 0; buffer[ i ] != '\0'; i++, letterIndex++ )
 		{
-			encryptedBuffer[ i ] = generateChar( shiftArray[ letterIndex % alphabetSize ], buffer[ i ] );
+			encryptedBuffer[ i ] = generateChar( shiftArray[ letterIndex % strlen(key) ], buffer[ i ] );
 		}
 		encryptedBuffer[ i ] = '\0';
 		fprintf( outputFile, "%s", encryptedBuffer ); 

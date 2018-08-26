@@ -32,12 +32,11 @@ void generateShiftArray( char * key, int * shiftArray )
  */
 char generateChar( int shift, char originalChar  )
 {
-	if( originalChar < ALPHABET_INIT  || originalChar > ALPHABET_END )
+	if( originalChar < ALPHABET_INIT || originalChar > ALPHABET_END )
 	{
 		return originalChar;
 	}
-
-	char newChar = originalChar + shift;
+	int newChar = originalChar + shift;
 
 	if( newChar > ALPHABET_END ) 
 	{
@@ -60,7 +59,7 @@ char generateChar( int shift, char originalChar  )
 int encode( FILE * inputFile, char * key, char * outputFileName )
 {
 	int letterIndex = 0;
-	int alphabetSize = ALPHABET_END - ALPHABET_INIT + 1;
+	// int alphabetSize = ALPHABET_END - ALPHABET_INIT + 1;
 	printf( "Ciphering the file to %s file\n", outputFileName );
 
 	int * shiftArray = malloc( strlen(key) * sizeof(int) );
@@ -81,7 +80,7 @@ int encode( FILE * inputFile, char * key, char * outputFileName )
 		int i;
 		for( i = 0; buffer[ i ] != '\0'; i++, letterIndex++ )
 		{
-			encryptedBuffer[ i ] = generateChar( shiftArray[ letterIndex % alphabetSize ], buffer[ i ] );
+			encryptedBuffer[ i ] = generateChar( shiftArray[  letterIndex % strlen( key ) ], buffer[ i ] );
 		}
 		encryptedBuffer[ i ] = '\0';
 		fprintf( outputFile, "%s", encryptedBuffer ); 
@@ -112,7 +111,7 @@ int main( int argc, char ** argv )
 	if( success == 0 )
 	{
 		printf( ">>> Sucessfull ciphering\n>>> Saving a file named %s on build directory\n", argv[3] );
-		sleep( 2 );
+		usleep( 2000 );
 	}
 
 	printf( "\n>>> Exiting...\n" );
