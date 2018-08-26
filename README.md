@@ -7,10 +7,13 @@ A little program to encode and decode messages with Vigenere Cipher. Build in C 
 
 ## Running
 ### To encode
-> ./bin/encoder 'pathToInputFile' 'keyToEncode' 'pathToOutputFile'
+> ./bin/encoder 'pathToInputFile' 'keyToEncode' 'outputFilename'
 
 ### To decode
-> ./bin/decoder 'pathToCodedFile' 'keyToDecode' 'pathToOutputFile'
+> ./bin/decoder 'pathToCodedFile' 'keyToDecode' 'outputFilename'
+
+## Generated files
+All the created files by the project are saved on build/ directory.
 
 ## Cleaning the project
 > make clean

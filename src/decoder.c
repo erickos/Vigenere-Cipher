@@ -89,7 +89,11 @@ int decode( FILE * inputFile, char * key, char * outputFileName )
 	fclose( outputFile );
 	free( shiftArray );
 
-	usleep( 2000 );
+	char buff[ BUFFER_LIMIT ];
+
+	snprintf( buff, sizeof(buff), "mv %s build/", outputFileName ); 
+	system( buff );
+
 	return 0;
 }
 
@@ -104,6 +108,12 @@ int main( int argc, char ** argv )
 	
 	FILE * inputFile = fopen( argv[1], "r" );
 
+	if( inputFile == NULL )
+	{
+		printf( "Cannot open the input file: %s\n", argv[1] );
+		return 1;
+	}
+
 	char * key = ( char * ) malloc( sizeof( char ) * ( ALPHABET_END - ALPHABET_INIT ) + 1 );
 	strcpy( key, argv[2] );	// copies the key to a string variable
 	
@@ -111,8 +121,7 @@ int main( int argc, char ** argv )
 
 	if( success == 0 )
 	{
-		printf( ">>> Sucessfull uncipher\n>>> Saving a file named %s on build directory\n", argv[3] );
-		sleep( 1 );
+		printf( ">>> Sucessfull decode\n>>> Saving a file named %s on build/ directory\n", argv[3] );
 	}
 
 	printf( "\n>>> Exiting...\n" );
